@@ -1,0 +1,86 @@
+---
+- name: updating packages
+  apt: update_cache=yes state=latest
+  #cache_valid_time=3600
+
+- name: install required packages
+  apt: name={{item}} state=present
+  with_items:
+    #http client
+    - cmake
+    - libtool
+    - autoconf
+
+    - httpie
+    - zsh
+    - aften
+    - vlc
+    #util
+    #- glances --using pip
+    - unzip
+    - build-essential
+    - mercurial
+    - git
+    - tree
+    - wget
+    - curl
+    - htop
+    - iotop
+    - iftop
+    #parallel lzma compressor compatible with xz
+    - pxz
+    #python
+    - python-dev
+    - python-pip
+    #- python-pycurl
+    - ipython
+
+    #cx_oracle requirement
+    - libaio-dev
+    #lxml requirement
+    - libxml2-dev
+    - libxslt1-dev
+    - libz-dev
+    #pycurl requirement
+    - libcurl4-openssl-dev
+    - virtualenvwrapper
+    - libjpeg8-dev
+    - vim
+    #servers
+    #- supervisor
+    #- nginx-extras
+    #- redis-server
+
+    #############
+    # for using windows share
+    #############
+    - cifs-utils
+
+    #############
+    # ntp
+    #############
+    - ntp
+
+    #############
+    # for samba server
+    #############
+    #mount
+    - nfs-common
+    #listing
+    - smbclient
+    #utf8 file name
+    - linux-image-extra-virtual
+    - memcached
+    - libmemcached-dev
+    #allow users to bind servers upon a low-numbered port
+    - authbind
+    #multicast static route
+    - smcroute
+    #############
+    # for loudness
+    #############
+    - libzmq-dev
+    - libmsgpack-dev
+
+- name: create link /usr/local/bin/aften
+  file: src=/usr/bin/aften dest=/usr/local/bin/aften state=link
