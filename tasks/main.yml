@@ -47,7 +47,7 @@
     - libjpeg8-dev
     - vim
     #servers
-    #- supervisor
+    - supervisor
     #- nginx-extras
     #- redis-server
 
